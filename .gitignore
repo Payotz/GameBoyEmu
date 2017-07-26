@@ -1,0 +1,6 @@
+*.exe
+*.o
+*.pdf
+*.gb
+*.dll
+.vscode
