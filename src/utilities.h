@@ -2,15 +2,14 @@
 #define UTILITIES__
 #include <fstream>
 #include <iostream>
-#include <cstring>
 
 struct Register{
     union{
         struct{
-            unsigned short high[8];
-            unsigned short low[8];
+            unsigned short high;
+            unsigned short low;
         };
-        unsigned short whole[16];
+        unsigned short whole;
     };
 };
 
