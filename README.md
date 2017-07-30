@@ -11,3 +11,7 @@ make
 SDL2
 
 SDL2_mixer
+
+#TODO#
+
+Refactor gameboy.cpp to be readable.
