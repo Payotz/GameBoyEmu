@@ -24,49 +24,6 @@ struct Register lh;
 unsigned short sp;
 unsigned short pc;
 
-void GameBoy::initialize(){
-    isRunning = true;
-    SDL_Init(SDL_INIT_EVERYTHING);
-    window = SDL_CreateWindow("Hello World!",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,800,600,SDL_WINDOW_SHOWN);
-    renderTarget = SDL_CreateRenderer(window,-1,0);
-    SDL_SetRenderDrawColor(renderTarget,255,255,255,255);
-    for (int i = 0; i < 64000; i++){
-        ram[i] = 0;
-        vram[i] = 0;
-    }
-    for (int i = 0; i < 256; i++){
-        for(int j = 0; j < 256; j++){
-            gfx[i][j] = 0;
-        }
-    }
-    pc = 0x100;
-    sp = 0;
-}
-
-void GameBoy::loadFile(const char* fileName){
-    currentRom.createFromFile(fileName);
-}
-
-void GameBoy::handleEvents(){
-    SDL_Event event;
-    SDL_PollEvent(&event);
-    if(event.type == SDL_QUIT){
-        isRunning = false;
-    }
-}
-
-void GameBoy::render(){
-    std::cout << "Rendering!" << std::endl;
-    SDL_RenderClear(renderTarget);
-    SDL_RenderPresent(renderTarget);
-}
-
-void GameBoy::cleanup(){
-    currentRom.clean();
-    SDL_DestroyRenderer(renderTarget);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-}
 
 void op_0x0(){
     pc +=2;
@@ -164,11 +121,11 @@ void op_0xE(){ // LD nn.n = Put value nn into n | C,n
 }
 
 void op_0xF(){
-
+    pc +=2;
 }
 
 void op_1x0(){
-
+    pc +=2;
 }
 
 void op_1x1(){
@@ -212,9 +169,13 @@ void op_1x6(){  // LD nn.n = Put value nn into n | D,n
     pc += 2;
 }
 
-void op_1x7(){}
+void op_1x7(){
+    pc +=2;
+}
 
-void op_1x8(){}
+void op_1x8(){
+    pc +=2;
+}
 
 void op_1x9(){
     lh.whole += ed.whole;
@@ -253,11 +214,17 @@ void op_1xD(){
     pc +=2;
 }
 
-void op_1xE(){}
+void op_1xE(){
+    pc +=2;
+}
 
-void op_1xF(){}
+void op_1xF(){
+    pc +=2;
+}
 
-void op_2x0(){}
+void op_2x0(){
+    pc +=2;
+}
 
 void op_2x1(){
     lh.whole = (opcode & 0x000F);
@@ -301,9 +268,13 @@ void op_2x6(){ // LD nn.n = Put value nn into n | H,n
     pc +=2;
 }
 
-void op_2x7(){}
+void op_2x7(){
+    pc += 2;
+}
 
-void op_2x8(){}
+void op_2x8(){
+    pc += 2;
+}
 
 void op_2x9(){
     lh.whole += lh.whole;
@@ -339,6 +310,7 @@ void op_2xD(){
         flagreg_z = true;
     }
     flagreg_n = true;
+    pc +=2;
 }
 
 void op_2xE(){ // LD nn.n = Put value nn into n | L,n
@@ -404,15 +376,20 @@ void op_3x5(){
     pc += 2;
 }
 
-void op_3x6(){}
+void op_3x6(){
+    pc +=2;
+}
 
 void op_3x7(){
     flagreg_c = true;
     flagreg_n = false;
     flagreg_h = false;
+    pc +=2;
 }
 
-void op_3x8(){}
+void op_3x8(){
+    pc +=2;
+}
 
 void op_3x9(){
     lh.whole += sp;
@@ -452,7 +429,9 @@ void op_3xD(){
     pc += 2;
 }
 
-void op_3xE(){}
+void op_3xE(){
+    pc +=2;
+}
 
 void op_3xF(){
     if(flagreg_c){
@@ -498,9 +477,13 @@ void op_4x6(){
     pc += 2;
 }
 
-void op_4x7(){}
+void op_4x7(){
+    pc +=2;
+}
 
-void op_4x8(){}
+void op_4x8(){
+    pc +=2;
+}
 
 void op_4x9(){
     cb.high = cb.high;
@@ -1390,6 +1373,7 @@ void op_Bx8(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_Bx9(){
@@ -1404,6 +1388,7 @@ void op_Bx9(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_BxA(){
@@ -1418,6 +1403,7 @@ void op_BxA(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_BxB(){
@@ -1432,6 +1418,7 @@ void op_BxB(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_BxC(){
@@ -1446,6 +1433,7 @@ void op_BxC(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_BxD(){
@@ -1460,6 +1448,7 @@ void op_BxD(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_BxE(){
@@ -1474,6 +1463,7 @@ void op_BxE(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
 void op_BxF(){
@@ -1488,20 +1478,29 @@ void op_BxF(){
     }
     flagreg_h = (opcode & 0x0004) >> 3;
     flagreg_n = 1;
+    pc +=2;
 }
 
-void op_Cx0(){}
+void op_Cx0(){
+    pc +=2;
+}
 
 void op_Cx1(){
     cb.whole = stack[sp];
     sp -=2;
 }
 
-void op_Cx2(){}
+void op_Cx2(){
+    pc +=2;
+}
 
-void op_Cx3(){}
+void op_Cx3(){
+    pc +=2;
+}
 
-void op_Cx4(){}
+void op_Cx4(){
+    pc +=2;
+}
 
 void op_Cx5(){
     stack[sp] = cb.whole;
@@ -1753,6 +1752,49 @@ void op_FxF(){
     pc += 2;
 }
 
+void GameBoy::initialize(){
+    isRunning = true;
+    SDL_Init(SDL_INIT_EVERYTHING);
+    window = SDL_CreateWindow("Hello World!",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,800,600,SDL_WINDOW_SHOWN);
+    renderTarget = SDL_CreateRenderer(window,-1,0);
+    SDL_SetRenderDrawColor(renderTarget,255,255,255,255);
+    for (int i = 0; i < 64000; i++){
+        ram[i] = 0;
+        vram[i] = 0;
+    }
+    for (int i = 0; i < 256; i++){
+        for(int j = 0; j < 256; j++){
+            gfx[i][j] = 0;
+        }
+    }
+    pc = 0x100;
+    sp = 0;
+}
+
+void GameBoy::loadFile(const char* fileName){
+    currentRom.createFromFile(fileName);
+}
+
+void GameBoy::handleEvents(){
+    SDL_Event event;
+    SDL_PollEvent(&event);
+    if(event.type == SDL_QUIT){
+        isRunning = false;
+    }
+}
+
+void GameBoy::render(){
+    SDL_RenderClear(renderTarget);
+    SDL_RenderPresent(renderTarget);
+}
+
+void GameBoy::cleanup(){
+    currentRom.clean();
+    SDL_DestroyRenderer(renderTarget);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
 void GameBoy::emulateCycle(){
     opcode = currentRom.data[pc] << 8 | currentRom.data[pc+1];
     switch((opcode & 0xF000) >> 12){
@@ -1774,7 +1816,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_0xD();break;
                 case 0xE:op_0xE();break;
                 case 0xF:op_0xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break; 
         case 0x1:{
@@ -1795,7 +1839,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_1xD();break;
                 case 0xE:op_1xE();break;
                 case 0xF:op_1xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x2:{
@@ -1816,7 +1862,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_2xD();break;
                 case 0xE:op_2xE();break;
                 case 0xF:op_2xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x3:{
@@ -1837,11 +1885,13 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_3xD();break;
                 case 0xE:op_3xE();break;
                 case 0xF:op_3xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x4:{
-            switch((opcode & 0xF000) >> 8){
+            switch((opcode & 0x0F00) >> 8){
                 case 0x0:op_4x0();break;
                 case 0x1:op_4x1();break;
                 case 0x2:op_4x2();break;
@@ -1858,11 +1908,13 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_4xD();break;
                 case 0xE:op_4xE();break;
                 case 0xF:op_4xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x5:{
-            switch((opcode & 0xF000) >> 8){
+            switch((opcode & 0x0F00) >> 8){
                 case 0x0:op_5x0();break;
                 case 0x1:op_5x1();break;
                 case 0x2:op_5x2();break;
@@ -1879,7 +1931,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_5xD();break;
                 case 0xE:op_5xE();break;
                 case 0xF:op_5xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x6:{
@@ -1900,7 +1954,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_6xD();break;
                 case 0xE:op_6xE();break;
                 case 0xF:op_6xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x7:{
@@ -1921,7 +1977,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_7xD();break;
                 case 0xE:op_7xE();break;
                 case 0xF:op_7xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x8:{
@@ -1942,7 +2000,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_8xD();break;
                 case 0xE:op_8xE();break;
                 case 0xF:op_8xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0x9:{
@@ -1963,7 +2023,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_9xD();break;
                 case 0xE:op_9xE();break;
                 case 0xF:op_9xF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0xA:{
@@ -1984,7 +2046,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_AxD();break;
                 case 0xE:op_AxE();break;
                 case 0xF:op_AxF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0xB:{
@@ -2005,7 +2069,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_BxD();break;
                 case 0xE:op_BxE();break;
                 case 0xF:op_BxF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0xC:{
@@ -2026,7 +2092,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_CxD();break;
                 case 0xE:op_CxE();break;
                 case 0xF:op_CxF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0xD:{
@@ -2047,7 +2115,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_DxD();break;
                 case 0xE:op_DxE();break;
                 case 0xF:op_DxF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0xE:{
@@ -2068,7 +2138,9 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_ExD();break;
                 case 0xE:op_ExE();break;
                 case 0xF:op_ExF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
         case 0xF:{
@@ -2089,11 +2161,16 @@ void GameBoy::emulateCycle(){
                 case 0xD:op_FxD();break;
                 case 0xE:op_FxE();break;
                 case 0xF:op_FxF();break;
-                default:break;
+                default:
+                    std::cout << "Unknown Opcode : " << ((opcode & 0xFF00) >> 8) << std::endl;
+                    break;
             }
         }break;
 
 
-        default:break;
+        default:
+            std::cout << "Unknown Opcode : " << ((opcode & 0xF000) >> 12) << std::endl;
+            break;
     }
+    std::cout << "Program counter: " << pc << std::endl;
 }

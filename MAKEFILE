@@ -11,4 +11,4 @@ main.o:
 	g++ -c src/main.cpp
 
 clean:
-	del *.o
+	rm *.o
