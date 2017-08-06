@@ -81,6 +81,8 @@ void op_0x8(){
 void op_0x9(){
     lh.whole += cb.whole;
     flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000010000000000) >> 10;
+    flagreg_c = (opcode & 0b0100000000000000) >> 14;
     pc += 2;
 }
 
@@ -174,12 +176,14 @@ void op_1x7(){
 }
 
 void op_1x8(){
-    pc +=2;
+    pc += ((opcode & 0x000F))
 }
 
 void op_1x9(){
     lh.whole += ed.whole;
     flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000010000000000) >> 10;
+    flagreg_c = (opcode & 0b0100000000000000) >> 14;
     pc += 2;
 }
 
@@ -223,7 +227,11 @@ void op_1xF(){
 }
 
 void op_2x0(){
-    pc +=2;
+    if(flagreg_z == 0){
+        pc += (opcode & 0x000F);
+    }else{
+        pc +=2;
+    }
 }
 
 void op_2x1(){
@@ -273,7 +281,11 @@ void op_2x7(){
 }
 
 void op_2x8(){
-    pc += 2;
+    if(flagreg_z == 1){
+        pc += (opcode & 0x000F);
+    }else{
+        pc +=2;
+    }
 }
 
 void op_2x9(){
@@ -336,7 +348,11 @@ void op_3x0(){
     flagreg_n = false;
     flagreg_h = false;
 
-    pc +=2;
+    if(flagreg_c == 0){
+        pc += (opcode & 0x000F);
+    }else{
+        pc +=2;
+    }
 }
 
 void op_3x1(){
@@ -388,7 +404,11 @@ void op_3x7(){
 }
 
 void op_3x8(){
-    pc +=2;
+    if(flagreg_c == 1){
+        pc += (opcode & 0x000F);
+    }else{
+        pc +=2;
+    }
 }
 
 void op_3x9(){
@@ -444,31 +464,61 @@ void op_3xF(){
 
 void op_4x0(){
     cb.low = cb.low;
+    if ((cb.high & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc += 2;
 }
 
 void op_4x1(){
     cb.low = cb.high;
+    if ((cb.low & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc += 2;
 }
 
 void op_4x2(){
     cb.low = ed.low;
+    if ((ed.low & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc += 2;
 }
 
 void op_4x3(){
     cb.low = ed.high;
+    if ((ed.high & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc += 2;
 }
 
 void op_4x4(){
     cb.low = lh.high;
+    if ((lh.low & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc += 2;
 }
 
 void op_4x5(){
     cb.low = lh.low;
+    if ((lh.high & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc += 2;
 }
 
@@ -478,6 +528,11 @@ void op_4x6(){
 }
 
 void op_4x7(){
+    if ((fa.high & 0x000F) == 0x0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = 1;
     pc +=2;
 }
 
@@ -763,41 +818,89 @@ void op_7xF(){
 void op_8x0(){
     fa.low += cb.low;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x1(){
     fa.low += cb.high;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x2(){
     fa.low += ed.low;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x3(){
     fa.low += ed.high;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x4(){
     fa.low += lh.low;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x5(){
     fa.low += lh.high;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x6(){
     fa.low += lh.whole;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x7(){
     fa.low += fa.low;
     pc += 2;
+    if(fa.low == 0){
+        flagreg_z = 1;
+    }
+    flagreg_n = 0;
+    flagreg_h = (opcode & 0b0000000000000100) >> 2;
+    flagreg_c = (opcode & 0b0000000001000000) >> 6;
 }
 
 void op_8x8(){
@@ -845,7 +948,7 @@ void op_8xB(){
 }
 
 void op_8xC(){
-    fa.low += flagreg_c + lh.high;
+    fa.low += flagreg_c + lh.low;
     if(fa.low == 0){
         flagreg_z = 1;
     }
@@ -856,7 +959,7 @@ void op_8xC(){
 }
 
 void op_8xD(){
-    fa.low += flagreg_c + lh.low;
+    fa.low += flagreg_c + lh.high;
     if(fa.low == 0){
         flagreg_z = 1;
     }
@@ -1482,7 +1585,12 @@ void op_BxF(){
 }
 
 void op_Cx0(){
-    pc +=2;
+    if(flagreg_z == 0){
+        pc = stack[sp];
+        sp--;
+    }else{
+        pc += 2;
+    }
 }
 
 void op_Cx1(){
@@ -1491,15 +1599,23 @@ void op_Cx1(){
 }
 
 void op_Cx2(){
+    if(flagreg_z == 0)
+        pc = (opcode & 0x00FF);
     pc +=2;
 }
 
 void op_Cx3(){
-    pc +=2;
+    pc = (opcode & 0x00FF);
 }
 
 void op_Cx4(){
-    pc +=2;
+    if(flagreg_z == 0){
+        stack[sp] = pc;
+        sp++;
+    }
+    else{
+        pc += 2;
+    }
 }
 
 void op_Cx5(){
@@ -1516,14 +1632,22 @@ void op_Cx7(){
 }
 
 void op_Cx8(){
-    pc += 2;
+    if(flagreg_z == 1){
+        pc = stack[sp];
+        sp--;
+    }else{
+        pc += 2;
+    }
 }
 
 void op_Cx9(){
-    pc += 2;
+    pc = stack[sp];
+    sp--;
 }
 
 void op_CxA(){
+    if(flagreg_z == 1)
+        pc = (opcode & 0x00FF);
     pc += 2;
 }
 
@@ -1532,11 +1656,19 @@ void op_CxB(){
 }
 
 void op_CxC(){
-    pc += 2;
+    if(flagreg_z == 1){
+        stack[sp] = pc;
+        sp++;
+    }
+    else{
+        pc += 2;
+    }
 }
 
 void op_CxD(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = (opcode & 0x00FF);
 }
 
 void op_CxE(){
@@ -1548,15 +1680,23 @@ void op_CxF(){
 }
 
 void op_Dx0(){
-    pc += 2;
+    if(flagreg_c == 0){
+        pc = stack[sp];
+        sp--;
+    }else{
+        pc += 2;
+    }
 }
 
 void op_Dx1(){
     ed.whole = stack[sp];
     sp -= 2;
+    pc += 2;
 }
 
 void op_Dx2(){
+    if(flagreg_c == 0)
+        pc = (opcode & 0x00FF);
     pc += 2;
 }
 
@@ -1565,7 +1705,13 @@ void op_Dx3(){
 }
 
 void op_Dx4(){
-    pc += 2;
+    if(flagreg_c == 0){
+        stack[sp] = pc;
+        sp++;
+    }
+    else{
+        pc += 2;
+    }
 }
 
 void op_Dx5(){
@@ -1583,14 +1729,21 @@ void op_Dx7(){
 }
 
 void op_Dx8(){
-    pc += 2;
+    if(flagreg_c == 1){
+        pc = stack[sp];
+        sp--;
+    }else{
+        pc += 2;
+    }
 }
 
 void op_Dx9(){
-    pc += 2;
+    pc += 2; //TODO page 118
 }
 
 void op_DxA(){
+    if(flagreg_c == 1)
+        pc = (opcode & 0x00FF);
     pc += 2;
 }
 
@@ -1599,7 +1752,13 @@ void op_DxB(){
 }
 
 void op_DxC(){
-    pc += 2;
+    if(flagreg_c == 1){
+        stack[sp] = pc;
+        sp++;
+    }
+    else{
+        pc += 2;
+    }
 }
 
 void op_DxD(){
@@ -1655,7 +1814,7 @@ void op_Ex8(){
 }
 
 void op_Ex9(){
-    pc += 2;
+    pc = lh.whole;
 }
 
 void op_ExA(){
