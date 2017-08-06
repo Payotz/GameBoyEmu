@@ -176,7 +176,7 @@ void op_1x7(){
 }
 
 void op_1x8(){
-    pc += ((opcode & 0x000F))
+    pc += ((opcode & 0x000F));
 }
 
 void op_1x9(){
@@ -1628,7 +1628,9 @@ void op_Cx6(){
 }
 
 void op_Cx7(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0000;
 }
 
 void op_Cx8(){
@@ -1676,7 +1678,9 @@ void op_CxE(){
 }
 
 void op_CxF(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0008;
 }
 
 void op_Dx0(){
@@ -1725,7 +1729,9 @@ void op_Dx6(){
 }
 
 void op_Dx7(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0010;
 }
 
 void op_Dx8(){
@@ -1770,7 +1776,9 @@ void op_DxE(){
 }
 
 void op_DxF(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0018;
 }
 
 void op_Ex0(){
@@ -1805,7 +1813,9 @@ void op_Ex6(){
 }
 
 void op_Ex7(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0020;
 }
 
 void op_Ex8(){
@@ -1838,7 +1848,9 @@ void op_ExE(){
 }
 
 void op_ExF(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0028;
 }
 
 void op_Fx0(){
@@ -1873,7 +1885,9 @@ void op_Fx6(){
 }
 
 void op_Fx7(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0030;
 }
 
 void op_Fx8(){
@@ -1908,7 +1922,9 @@ void op_FxE(){
 }
 
 void op_FxF(){
-    pc += 2;
+    stack[sp] = pc;
+    sp++;
+    pc = 0x0038;
 }
 
 void GameBoy::initialize(){
