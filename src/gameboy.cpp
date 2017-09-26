@@ -219,6 +219,7 @@ void op_1xD(){
 }
 
 void op_1xE(){
+    ed.low = ed.high;
     pc +=2;
 }
 
@@ -331,7 +332,14 @@ void op_2xE(){ // LD nn.n = Put value nn into n | L,n
 }
 
 void op_2xF(){
-    //fa.low ~= fa.low;
+    if(flagreg_c == 1){
+        flagreg_c = 0;
+    }else{
+        flagreg_c = 1;   
+    }
+    
+    flagreg_n = 0;
+    flagreg_h = 0;
     pc +=2;
 }
 
@@ -393,6 +401,7 @@ void op_3x5(){
 }
 
 void op_3x6(){
+    ed.low = std::static_cast(short)lh.whole;
     pc +=2;
 }
 
@@ -450,6 +459,7 @@ void op_3xD(){
 }
 
 void op_3xE(){
+    ed.low = fa.low;
     pc +=2;
 }
 
@@ -537,6 +547,7 @@ void op_4x7(){
 }
 
 void op_4x8(){
+    cb.high = cb.low;
     pc +=2;
 }
 
@@ -1705,6 +1716,9 @@ void op_Dx2(){
 }
 
 void op_Dx3(){
+    if(flagreg_c == 0){
+        sp += fa.low();    
+    }
     pc += 2;
 }
 
