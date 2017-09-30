@@ -1,5 +1,5 @@
-#ifndef UTILITIES__
-#define UTILITIES__
+#pragma once
+
 #include <fstream>
 #include <iostream>
 
@@ -21,4 +21,3 @@ struct Rom{
     void clean();
 };
 
-#endif
