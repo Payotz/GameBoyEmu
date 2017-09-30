@@ -386,3 +386,243 @@ void op_CB_AxE(){
 }
 void op_CB_AxF(){
 }
+void op_CB_Bx0(){
+
+}
+void op_CB_Bx1(){
+
+}
+void op_CB_Bx2(){
+
+}
+void op_CB_Bx3(){
+
+}
+void op_CB_Bx4(){
+
+}
+void op_CB_Bx5(){
+
+}
+void op_CB_Bx6(){
+
+}
+void op_CB_Bx7(){
+
+}
+void op_CB_Bx8(){
+
+}
+void op_CB_Bx9(){
+
+}
+void op_CB_BxA(){
+
+}
+void op_CB_BxB(){
+
+}
+void op_CB_BxC(){
+
+}
+void op_CB_BxD(){
+
+}
+void op_CB_BxE(){
+
+}
+void op_CB_BxF(){
+
+}
+void op_CB_Cx0(){
+
+}
+void op_CB_Cx1(){
+
+}
+void op_CB_Cx2(){
+
+}
+void op_CB_Cx3(){
+
+}
+void op_CB_Cx4(){
+
+}
+void op_CB_Cx5(){
+
+}
+void op_CB_Cx6(){
+
+}
+void op_CB_Cx7(){
+
+}
+void op_CB_Cx8(){
+
+}
+void op_CB_Cx9(){
+
+}
+void op_CB_CxA(){
+
+}
+void op_CB_CxB(){
+
+}
+void op_CB_CxC(){
+
+}
+void op_CB_CxD(){
+
+}
+void op_CB_CxE(){
+
+}
+void op_CB_CxF(){
+
+}
+void op_CB_Dx0(){
+
+}
+void op_CB_Dx1(){
+
+}
+void op_CB_Dx2(){
+
+}
+void op_CB_Dx3(){
+
+}
+void op_CB_Dx4(){
+
+}
+void op_CB_Dx5(){
+
+}
+void op_CB_Dx6(){
+
+}
+void op_CB_Dx7(){
+
+}
+void op_CB_Dx8(){
+
+}
+void op_CB_Dx9(){
+
+}
+void op_CB_DxA(){
+
+}
+void op_CB_DxB(){
+
+}
+void op_CB_DxC(){
+
+}
+void op_CB_DxD(){
+
+}
+void op_CB_DxE(){
+
+}
+void op_CB_DxF(){
+
+}
+void op_CB_Ex0(){
+
+}
+void op_CB_Ex1(){
+
+}
+void op_CB_Ex2(){
+
+}
+void op_CB_Ex3(){
+
+}
+void op_CB_Ex4(){
+
+}
+void op_CB_Ex5(){
+
+}
+void op_CB_Ex6(){
+
+}
+void op_CB_Ex7(){
+
+}
+void op_CB_Ex8(){
+
+}
+void op_CB_Ex9(){
+
+}
+void op_CB_ExA(){
+
+}
+void op_CB_ExB(){
+
+}
+void op_CB_ExC(){
+
+}
+void op_CB_ExD(){
+
+}
+void op_CB_ExE(){
+
+}
+void op_CB_ExF(){
+
+}
+void op_CB_Fx0(){
+
+}
+void op_CB_Fx1(){
+
+}
+void op_CB_Fx2(){
+
+}
+void op_CB_Fx3(){
+
+}
+void op_CB_Fx4(){
+
+}
+void op_CB_Fx5(){
+
+}
+void op_CB_Fx6(){
+
+}
+void op_CB_Fx7(){
+
+}
+void op_CB_Fx8(){
+
+}
+void op_CB_Fx9(){
+
+}
+void op_CB_FxA(){
+
+}
+void op_CB_FxB(){
+
+}
+void op_CB_FxC(){
+
+}
+void op_CB_FxD(){
+
+}
+void op_CB_FxE(){
+
+}
+void op_CB_FxF(){
+    
+}
