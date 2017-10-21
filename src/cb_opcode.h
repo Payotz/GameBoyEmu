@@ -29,7 +29,7 @@ void op_CB_0x9(){
 }
 
 void op_CB_0xA(){
-    
+
 }
 
 void op_CB_0xB(){
@@ -624,5 +624,5 @@ void op_CB_FxE(){
 
 }
 void op_CB_FxF(){
-    
+
 }
