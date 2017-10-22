@@ -26,7 +26,7 @@ void op_0x4(){
     }
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 1){
-        GameBoy::cpu.flagreg_h = (opcode & 0b000000000100) >> 2;
+        GameBoy::cpu.flagreg_h = (opcode >> 2) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -135,7 +135,7 @@ void op_1x4(){
     }
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 1){
-        GameBoy::cpu.flagreg_h = (opcode & 0b000000000100) >> 2;
+        GameBoy::cpu.flagreg_h = (opcode >> 2) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -249,7 +249,7 @@ void op_2x4(){
     }
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 1){
-        GameBoy::cpu.flagreg_h = (opcode & 0b000000000100) >> 2;
+        GameBoy::cpu.flagreg_h = (opcode >> 2) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -303,7 +303,7 @@ void op_2xC(){
     }
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 1){
-        GameBoy::cpu.flagreg_h = (opcode & 0b000000000100) >> 2;
+        GameBoy::cpu.flagreg_h = (opcode >> 2) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1001,7 +1001,7 @@ void op_9x0(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1014,7 +1014,7 @@ void op_9x1(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1027,7 +1027,7 @@ void op_9x2(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1040,7 +1040,7 @@ void op_9x3(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1053,7 +1053,7 @@ void op_9x4(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1066,7 +1066,7 @@ void op_9x5(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1079,7 +1079,7 @@ void op_9x6(){
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
     }
-    GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+    GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     GameBoy::cpu.pc+=2;
 }
 
@@ -1091,7 +1091,7 @@ void op_9x7(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1104,7 +1104,7 @@ void op_9x8(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1117,7 +1117,7 @@ void op_9x9(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1130,7 +1130,7 @@ void op_9xA(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1143,7 +1143,7 @@ void op_9xB(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1156,7 +1156,7 @@ void op_9xC(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1169,7 +1169,7 @@ void op_9xD(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1182,7 +1182,7 @@ void op_9xE(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
 }
@@ -1195,7 +1195,7 @@ void op_9xF(){
     GameBoy::cpu.flagreg_n = 1;
     if(GameBoy::cpu.flagreg_c == 0){
         GameBoy::cpu.flagreg_c = 1;
-        GameBoy::cpu.flagreg_h = (opcode & 0x0004) >> 3;
+        GameBoy::cpu.flagreg_h = (opcode >> 3) & 1;
     }
     GameBoy::cpu.pc+=2;
     
@@ -1729,6 +1729,7 @@ void op_Dx5(){
 }
 
 void op_Dx6(){
+    GameBoy::cpu.fa.low -= (opcode & 0x00FF);
     GameBoy::cpu.pc+=2;
 }
 
@@ -1748,7 +1749,10 @@ void op_Dx8(){
 }
 
 void op_Dx9(){
-    GameBoy::cpu.pc+=2; //TODO page 118
+    GameBoy::cpu.pc = stack[sp];
+    GameBoy::cpu.sp -=2;
+    interruptMode = true;
+     //TODO page 118
 }
 
 void op_DxA(){
@@ -1758,6 +1762,7 @@ void op_DxA(){
 }
 
 void op_DxB(){
+    //NO INSTRUCTION
     GameBoy::cpu.pc+=2;
 }
 
@@ -1772,6 +1777,7 @@ void op_DxC(){
 }
 
 void op_DxD(){
+    //NO INSTRUCTION
     GameBoy::cpu.pc+=2;
 }
 
@@ -1791,6 +1797,7 @@ void op_DxF(){
 }
 
 void op_Ex0(){
+    // Put A into memory address $FF00+n.
     GameBoy::cpu.pc+=2;
 }
 
@@ -1806,6 +1813,7 @@ void op_Ex2(){
 }
 
 void op_Ex3(){
+    
     GameBoy::cpu.pc+=2;
 }
 
