@@ -1,10 +1,16 @@
 #pragma once
 
+void op_CB_0x0(){
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.cb.low << 7 ) | (GameBoy::cpu.cb.low >> 1);
+    GameBoy::cpu.pc += 2;
+}
+
 void op_CB_0x1(){
     GameBoy::cpu.pc += 2;
 }
 
-void op_CB_0x2(){   
+void op_CB_0x2(){  
     GameBoy::cpu.pc += 2;
 }
 
@@ -337,6 +343,36 @@ void op_CB_5xE(){
 }
 void op_CB_5xF(){
     GameBoy::cpu.pc += 2;
+}
+void op_CB_6x0(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x1(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x2(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x3(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x4(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x5(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x6(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x7(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x8(){
+    GameBoy::cpu.pc +=2;
+}
+void op_CB_6x9(){
+    GameBoy::cpu.pc +=2;
 }
 void op_CB_6xA(){
     GameBoy::cpu.pc += 2;

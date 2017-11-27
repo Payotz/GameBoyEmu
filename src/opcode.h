@@ -1749,7 +1749,7 @@ void op_Dx8(){
 }
 
 void op_Dx9(){
-    GameBoy::cpu.pc = stack[sp];
+    GameBoy::cpu.pc = GameBoy::memory.stack[GameBoy::cpu.sp];
     GameBoy::cpu.sp -=2;
     interruptMode = true;
      //TODO page 118
