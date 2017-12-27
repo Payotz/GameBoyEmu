@@ -79,65 +79,153 @@ void op_CB_0x7(){
 
 void op_CB_0x8(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.cb.low >> 7) | (GameBoy::cpu.cb.low << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0x9(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.high >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.cb.high >> 7) | (GameBoy::cpu.cb.high << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0xA(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.ed.low >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.ed.low >> 7) | (GameBoy::cpu.ed.low << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0xB(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.ed.high >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.ed.high >> 7) | (GameBoy::cpu.ed.high << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0xC(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.lh.low >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.lh.low >> 7) | (GameBoy::cpu.lh.low << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0xD(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.lh.high >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.lh.high >> 7) | (GameBoy::cpu.lh.high << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0xE(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.lh.whole >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.lh.whole >> 15) | (GameBoy::cpu.fa.low << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_0xF(){
     GameBoy::cpu.pc += 2;
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.fa.low >> 6) & 1;
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    GameBoy::cpu.cb.low = (GameBoy::cpu.cb.low >> 7) | (GameBoy::cpu.fa.low << 1);
+    if (GameBoy::cpu.cb.low == 0)
+        GameBoy::cpu.flagreg_z = 0;
 }
 
 void op_CB_1x0(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x1(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x2(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x3(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x4(){   
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x5(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x6(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 
 void op_CB_1x7(){
+    GameBoy::cpu.flagreg_n = 0;
+    GameBoy::cpu.flagreg_h = 0;
+    auto dummy = (GameBoy::cpu.cb.low << 8 ) | (GameBoy::cpu.flagreg_c);
+    GameBoy::cpu.flagreg_c = (GameBoy::cpu.cb.low >> 6) & 1;
+    GameBoy::cpu.cb.low = (dummy << 7) | (dummy >> 1);
     GameBoy::cpu.pc += 2;
 }
 

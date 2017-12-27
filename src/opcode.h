@@ -1,5 +1,4 @@
 #pragma once
-//https://www.quora.com/How-do-I-right-cyclic-shift-an-integer-in-C++
 void op_0x0(){
     GameBoy::cpu.pc +=2;
 } 

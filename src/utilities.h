@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include <iostream>
-
+#include <memory>
 struct Register{
     union{
         struct{
@@ -20,4 +20,3 @@ struct Rom{
     void createFromFile(const char* fileName);
     void clean();
 };
-
